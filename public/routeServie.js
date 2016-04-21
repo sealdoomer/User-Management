@@ -5,21 +5,7 @@ var module = angular.module("myUserApp", ['angularUtils.directives.dirPagination
             return usersResponse.data;
           });
         };
-
-        this.getOne = function(){
-          return $http.get('/api/iloveoov/' + id).then(function(usersResponse){
-            return usersResponse.data;
-
-          });
-        };
         
-        this.delete = function(id){
-            for(var i in users){
-                if( users[i].id == id){
-                    users.splice(i, 1);
-      }
-    }
-  }
         this.get = function(id){
             for(var i in users){
                 if(users[i].id == id){
@@ -53,10 +39,7 @@ var module = angular.module("myUserApp", ['angularUtils.directives.dirPagination
     module.controller('homeCtrl', function($scope, userlist, $http, $location){
       userlist.getUser().then(function(response){
         $scope.users = response;
-        // console.log($scope.users);
-        // console.log(123);
       });
-      // $scope.users = userlist.getUser();
       $scope.sort = function(parameter){
       $scope.sortKey = parameter; 
       $scope.reverse = !$scope.reverse;
@@ -97,12 +80,8 @@ var module = angular.module("myUserApp", ['angularUtils.directives.dirPagination
     module.controller("editCtrl", function($scope, $location, $routeParams, $http, userlist){
          $scope.passid = $routeParams.passid;
             $scope.edit = false; 
-            // var newUsers = [];
-      userlist.getUser().then(function(response){
+        userlist.getUser().then(function(response){
         $scope.users = response;
-        // newUsers = $scope.users;
-        // console.log(234);
-      // });
               var user_present;
               for( var i = 0; i < $scope.users.length; i++){
                 if( $scope.users[i]._id == $scope.passid){
@@ -126,18 +105,13 @@ var module = angular.module("myUserApp", ['angularUtils.directives.dirPagination
             $scope.$watch('title', function() {$scope.test();});
             $scope.$watch('sex', function() {$scope.test();});
             $scope.$watch('age', function() {$scope.test();});
-// });
 
             $scope.updateNow = function(){
-              // $http.put('/iloveoov/' + id)
               console.log($scope.users);
             for( var i in $scope.users){
-              console.log(3333333);
-              // console.log($scope.users[i]._id);
-              // console.log($scope.users[i]);
               if( $scope.users[i]._id == $scope.passid) 
               {
-                console.log(44444444);
+                
           $scope.users[i].Pwd = $scope.passw1;
           $scope.users[i].age = $scope.age;
           $scope.users[i].fName = $scope.fName;
@@ -225,27 +199,6 @@ var module = angular.module("myUserApp", ['angularUtils.directives.dirPagination
             $scope.passw2 = '';
             $scope.edit = true;
             $scope.incomplete = false;
-
-    //   $scope.createNewUser = function() {
-    //     // console.log($scope.user);
-    //     console.log("I am creating a new user!");
-    //     var maxLength = $scope.users.length;
-    //     userlist.create({ id : maxLength, 
-    //             fName : $scope.fName,
-    //             lName : $scope.lName, 
-    //             age : $scope.age, 
-    //             title: $scope.title,
-    //             sex : $scope.sex,  
-    //             Pwd : $scope.passw1 
-    //           })
-    //     $http.post('/api/iloveoov', $scope.users[users.length - 1]).then(function(response){
-    //       console.log(response);
-    //     // });
-    //     });
-    //         $location.path('http://localhost:3000');
-    // }
-    // $location.path('http://localhost:3000');
-// });
             });
 
 
