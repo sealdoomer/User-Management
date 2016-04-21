@@ -1,0 +1,15 @@
+{
+  "name": "final",
+  "version": "1.0.0",
+  "description": "final project with mongodb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hao Wu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "mongodb": "^2.1.16"
+  }
+}

@@ -1,0 +1,49 @@
+<table class="w3-table w3-bordered w3-striped">
+  <tr>
+    <th>Edit</th>
+    <th>Delete</th>
+<th ng-click="sort('fName')">First Name
+	<span class="glyphicon sort-icon" ng-show="sortKey=='fName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+</th>
+<th ng-click="sort('lName')">Last Name
+	<span class="glyphicon sort-icon" ng-show="sortKey=='lName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+</th>
+<th ng-click="sort('title')">Title
+	<span class="glyphicon sort-icon" ng-show="sortKey=='title'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+</th>
+<th ng-click="sort('sex')">Sex
+	<span class="glyphicon sort-icon" ng-show="sortKey=='sex'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+</th>
+<th ng-click="sort('age')">Age
+	<span class="glyphicon sort-icon" ng-show="sortKey=='age'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+</th>
+  </tr>
+  <tr>
+	<label >Search</label>
+  <p><input type = "text" ng-model="fnamefilter"></input></p></tr>
+  <!--<tr ng-repeat="user in users | orderBy:'fName'| filter: fnamefilter"> -->
+  <tr dir-paginate = "user in users | orderBy:sortKey:reverse | filter:fnamefilter | itemsPerPage:5">
+    <td>
+    <!-- At this time the Edit button has some change due to the function 04/12/2016 -->
+      <a href="#/edittheuser/{{ user._id }}"><button class="w3-btn w3-ripple" >&#9998; Edit</button></a>
+    </td>
+    <td>
+    <!-- since mongodb created the auto increment _id so let's change the id into _id here -->
+	  <button class="w3-btn w3-ripple" ng-click="deleteUser(user._id)">Delete</button>
+	</td>
+    <td>{{ user.fName }}</td>
+    <td>{{ user.lName }}</td>
+    <td>{{ user.title }}</td>
+    <td>{{ user.sex }}</td>
+    <td>{{ user.age }}</td>
+  </tr>
+</table>
+
+	<dir-pagination-controls
+	   max-size="5"
+	   direction-links="true"
+	   boundary-links="true" >
+	</dir-pagination-controls>
+
+
+<a href="#/createnewuser"><button class="w3-btn w3-green w3-ripple">&#9998; Create New User</button></a>
